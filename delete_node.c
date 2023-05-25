@@ -49,7 +49,7 @@ size_t list_len(const stack_t *h)
 
 	for (i = 0; temp != NULL; i++)
 		temp = temp->next;
-	
+
 	return (i);
 
 }

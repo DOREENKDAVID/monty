@@ -7,16 +7,10 @@
  */
 int is_digit(char c)
 {
-	unsigned int i = 0;
-
-	if (c[0] == '-')
-	i++;
 	while (c[i])
 	{
 	if (c >= '0' && c <= '9')
-		i++;
-	else
 		return (1);
-	}
-	return (0);
+	else
+		return (0);
 }

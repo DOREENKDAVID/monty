@@ -2,14 +2,14 @@
 
 /**
  * tokenizer - splits line
+ * @head: double pointer to first node
  * @choice: user input command to execute
  * @line_number:handls instructions based on their line numbers.
  * Return: void
  */
-void tokenizer(stack_t **head,char *choice, unsigned int line_number)
+void tokenizer(stack_t **head, char *choice, unsigned int line_number)
 {
-	instruction_t instructions[] =
-       {
+	instruction_t instructions[] = {
 		{"push", op_push},
 		{"pall", op_pall},
 		{"pint", op_pint},

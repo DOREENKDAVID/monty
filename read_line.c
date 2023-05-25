@@ -11,14 +11,16 @@ void read_line(char *n, stack_t **head)
 	char *line_ptr = NULL, *user_cmd;
 	unsigned int line_number = 0;
 	size_t buf;
+	ssize_t read = 0;
+
 	fptr = fopen(n, "r");
-	
+
 	if (fptr == NULL)
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", n);
 		exit(EXIT_FAILURE);
 	}
-	while (getline(&line_ptr, &buf, fptr) != -1)
+	while ((read = getline(&line_ptr, &buf, fptr)) != -1)
 	{
 		line_number++;
 		user_cmd = strtok(line_ptr, "\n\t\r ");

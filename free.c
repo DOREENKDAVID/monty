@@ -1,17 +1,20 @@
+#include "monty.h"
+
 /**
-* free_ all - free all elements in the list
-* @head: pointer to nodes in the list
-* @line: pointer to string
-* @fptr: file pointer
+* free_stack - free all elements in linked list
+*
 */
 
-void free_all(stack_t **head)
+void free_stack(void)
 {
-	if (**head == NULL)
+	stack_t *temp = NULL;
+	
+	while (global_s.head != NULL)
 	{
-		free_all(&(*head)->next);
-		free(*head);
-		*head = NULL;
+		temp =  global_s.head->next);
+		free(global_s.head);
+		global_s.head = temp;
 	}
-	fclose(fptr);
+	fclose(global_s.fptr);
+	free(global_s.line_ptr);
 }

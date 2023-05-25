@@ -1,13 +1,16 @@
 #include "monty.h"
 
 /**
- * op_pint - prints the value at the top of the stack\n
+ * m_pint - prints the value at the top of the stack\n
  * @head: double pointr to linked list
  * @line_number:handls instructions based on their line numbers.
  * Return: top element
+ * Description:
+ * Check if the doubly linked list is empty
+ * Print the value of the first node
  */
 
-void op_pint(stack_t **head, unsigned int line_number)
+void m_pint(stack_t **head, unsigned int line_number)
 {
 	stack_t *temp = *head;
 
@@ -23,14 +26,17 @@ void op_pint(stack_t **head, unsigned int line_number)
 }
 
 /**
- * op_pop - removes the top element of the stack.
+ * m_pop - removes the top element of the stack.
  * @head: double pointer to node in the linked list
  * @line_number:handls instructions based on their line numbers.
  * Return:poped element data
+ * Description
+ * Check if the doubly linked list is empty
+ * Delete the first node from the doubly linked list
  */
 
 
-void op_pop(stack_t **head, unsigned int line_number)
+void m_pop(stack_t **head, unsigned int line_number)
 {
 	stack_t **temp = head;
 
@@ -39,6 +45,7 @@ void op_pop(stack_t **head, unsigned int line_number)
 		line_number = line_number;
 		fprintf(stderr, "L%u: can't pop an empty stack\n",
 				line_number);
+		free_stack();
 		exit(EXIT_FAILURE);
 
 	}
@@ -46,13 +53,20 @@ void op_pop(stack_t **head, unsigned int line_number)
 }
 
 /**
- * op_add - adds the top two elements of the stack.
+ * m_add - adds the top two elements of the stack.
  * @head:double pointer to the linked list
  * @line_number:handls instructions based on their line numbers.
  * Return: added nodes
+ * Description
+ * Check if the dlinked list has at least two nodes
+ * Get the first two nodes of the dlinked list
+ * Calculate the sum of the values of the first two nodes
+ * Delete the first two nodes from the dlinked list
+ * Add a new node with the sum as its value at the beginning
+ * Handle the case of memory allocation failure
  */
 
-void op_add(stack_t **head, unsigned int line_number)
+void m_add(stack_t **head, unsigned int line_number)
 {
 	stack_t *new = NULL, *node_0 = NULL, *node_1 = NULL;
 	int sum = 0;
@@ -75,20 +89,23 @@ void op_add(stack_t **head, unsigned int line_number)
 	new =  add_node_beg(head, sum);
 	if (new == NULL)
 	{
-		line_number = line_number;
+		fprintf(stderr, "Error: malloc failed%u",
+				line_number);
+		free(new);
+		exit(EXIT_FAILURE);		
 
 	}
 }
 
 /**
- * op_nop - doesn’t do anything
+ * m_nop - doesn’t do anything
  * @head: double pointer to node in linked list
  * @line_number:handls instructions based on their line numbers.
  * Return:nothing
  */
 
-void op_nop(stack_t **head, unsigned int line_number)
+void m_nop(stack_t **head, unsigned int line_number)
 {
-	head = head;
-	line_number = line_number;
+	(void) = head;
+	(void) = line_number;
 }

@@ -9,7 +9,27 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <ctype.h>
-FILE *fptr;
+#define DELIMS "\n\t\r"
+
+/**
+ * struct global_s - variables -args, file, line content
+ * @arg: pointer to tekenized line
+ * @fptr: pointer to monty file
+ * @line_ptr: line content
+ * @flag: change stack <-> queue
+ */
+typedef struct global_s
+{
+	char *arg;
+	FILE *fptr;
+	char *lne_ptr;
+	int flag;
+	stack_t *head;
+	unsigned int num;
+
+}  global_t;
+extern global_t global_s;
+
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -39,10 +59,7 @@ typedef struct instruction_s
 	char *opcode;
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
-typedef struct stack_s
-{
-        struct stack_s **head;
-} stack_t **head;
+
 /**
  * struct global_struct_s - hold common variables
  * @linenum: linenumber as integer
