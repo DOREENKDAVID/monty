@@ -5,6 +5,11 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <ctype.h>
+FILE *fptr;
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -34,7 +39,10 @@ typedef struct instruction_s
 	char *opcode;
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
-
+typedef struct stack_s
+{
+        struct stack_s **head;
+} stack_t **head;
 /**
  * struct global_struct_s - hold common variables
  * @linenum: linenumber as integer
@@ -58,8 +66,13 @@ void op_nop(stack_t **head, unsigned int line_number);
 void op_pop(stack_t **head, unsigned int line_number);
 void op_push(stack_t **head, unsigned int line_number);
 void op_pall(stack_t **head, unsigned int line_number);
-void free_stack_t(stack_t *head, char *line, FILE *fptr);
+void op_swap(stack_t **head, unsigned int line_number);
+void free_all(stack_t *head);
 
 /*main function*/
-void (*select_op_func(char *choice))(stack_t **head, unsigned int line_number)
+void tokenizer(stack_t **head,char * choice,  unsigned int line_number);
+/*is_digit.c */
+int is_digit(char c);
+/*read_line.c*/
+void read_line(char *n, stack_t **head);
 #endif

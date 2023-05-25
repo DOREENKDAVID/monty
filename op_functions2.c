@@ -16,7 +16,8 @@ void op_sub(stack_t **head, unsigned int line_number)
 
 	if (list_len(*head) < 2)
 	{
-		fprintf(stderr, "L%d: can't sub, stack too short\n");
+		fprintf(stderr, "L%u: can't sub, stack too short\n",
+				line_number);
 		exit(EXIT_FAILURE);
 		line_number = line_number;
 	}
@@ -30,7 +31,8 @@ void op_sub(stack_t **head, unsigned int line_number)
 	new =  add_node_beg(head, sum);
 	if (!new)
 	{
-		fprintf(stderr "Error: malloc failed\n");
+		fprintf(stderr, "Error: malloc failed%u",
+				line_number);
 		exit(EXIT_FAILURE);
 		line_number = line_number;
 	}
@@ -52,14 +54,16 @@ void op_div(stack_t **head, unsigned int line_number)
 	if (list_len(*head) < 2)
 	{
 		line_number = line_number;
-		fprint(stderr, "L%d: can't div, stack too short\n");
-		exit(EXIT_FAILURE)
+		fprintf(stderr, "L%u: can't div, stack too short\n",
+				line_number);
+		exit(EXIT_FAILURE);
 
 	}
 	if (node_0->n == 0)
 	{
 		line_number = line_number;
-		fprint(stderr, "L%d: division by zero\n");
+		fprintf(stderr, "L%u: division by zero\n",
+				line_number);
 		exit(EXIT_FAILURE);
 	}
 	node_0 = get_node_at_index(*head, 0);
@@ -70,9 +74,10 @@ void op_div(stack_t **head, unsigned int line_number)
 	delete_node_at_index(head, 0);
 
 	new =  add_node_beg(head, sum);
-	if (!new)
+	if (new == NULL)
 	{
-		fprintf(stderr "Error: malloc failed\n");
+		fprintf(stderr, "Error: malloc failed%u",
+				line_number);
 		exit(EXIT_FAILURE);
 
 		line_number = line_number;

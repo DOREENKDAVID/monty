@@ -49,29 +49,7 @@ size_t list_len(const stack_t *h)
 
 	for (i = 0; temp != NULL; i++)
 		temp = temp->next;
-
+	
 	return (i);
-}
 
-
-/**
-* free_stack_t - free all elements in the list
-* @head: pointer to nodes in the list
-* @line: pointer to string
-* @fptr: file pointer
-*/
-
-void free_stack_t(stack_t *head, char *line, FILE *fptr)
-{
-	stack_t *temp;
-
-	free(line);
-	fclose(fptr);
-
-	while (head)
-	{
-		temp = head->next;
-		free(head);
-		head = temp;
-	}
 }

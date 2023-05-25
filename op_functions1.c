@@ -10,25 +10,24 @@
 
 void op_push(stack_t **head, unsigned int line_number)
 {
-	int data = 0;
 	stack_t *new_node = malloc(sizeof(stack_t));
+	char *arg;
 
-	line_number = line_number;
-
-	if (!new_node)
-		return;
-	if (global_struct->arg_list[1] && is_num(global_struct->arg_list[1][0]))
-		data = my_atoi(global_struct->arg_list[1]);
-	else
+	if (new_node == NULL)
 	{
-		fprintf(stderr,
-			"L%d: usage: push integer\n",
-			global_struct->linenum);
-		free(new_node);
-		exit(EXIT_SUCCESS);
+		fprintf(stderr, "Error: malloc failed %u",
+				line_number);
+		exit(EXIT_FAILURE);
+	}
+	arg = strtok(NULL, "\n\t\r ");
+	if (arg == NULL || is_digit(arg) == 1)
+	{
+		fprintf(stderr, "L%u: usage: push integer\n",
+				line_number);
+		exit(EXIT_FAILURE);
 	}
 
-	new_node->n = data;
+	new_node->n = atoi(arg);
 	new_node->prev = NULL;
 	new_node->next = NULL;
 
@@ -56,7 +55,7 @@ void op_pall(stack_t **head, unsigned int line_number)
 
 	line_number = line_number;
 
-	for (i = 0; temp; i++)
+	for (i = 0; temp != NULL; i++)
 	{
 		printf("%d\n", temp->n);
 		temp = temp->next;
@@ -78,7 +77,6 @@ void op_swap(stack_t **head, unsigned int line_number)
 
 	if (list_len(*head) < 2)
 	{
-		line_number = line_number;
 		fprintf(stderr,
 			"L%d: can't swap, stack too short\n",
 			line_number);
@@ -90,9 +88,9 @@ void op_swap(stack_t **head, unsigned int line_number)
 	new = insert_node_at_index(head, 1, i);
 	if (new == NULL)
 	{
-		fprintf(stderr, "Error: malloc failed\n");
-		free_all();
+		fprintf(stderr, "Error: malloc failed%u",
+				line_number);
+		free(new);
 		exit(EXIT_FAILURE);
 	}
-}
 }
