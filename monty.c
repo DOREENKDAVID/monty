@@ -1,5 +1,6 @@
 #include "monty.h"
-global_struct_t *global_struct = NULL;
+
+stack_t **global_head_ptr
 
 /**
  * main - main function for Monty interpreter
@@ -13,24 +14,26 @@ int main(int argc, char *argv[])
 	stack_t *head = NULL;
 	char *line = NULL;
 	size_t len = 0;
-	ssize_t read = 0;
-	unsigned int linenumber = 0;
-	void (*opfunc)(stack_t **head, unsigned int linenumber) = NULL;
+	ssize_t readline = 0;
+	unsigned int line_number = 0;
+	void (*op_func)(stack_t **head, unsigned int line_number) = NULL;
 	(void)argc;
 
 	fptr = fopen(argv[1], "r");
 	if (fptr == NULL)
+		fprintf(stderr, "Error: Can't open file %s\n",
+				argv[1]);
 		exit(EXIT_FAILURE);
 
-	while ((read = getline(&line, &len, fptr)) != -1)
+	while ((readline = getline(&line, &len, fptr)) != -1)
 	{
-		linenumber++;
+		line_number++;
 
 		remove_new_line(&line)
 
-		global_struct = create_global_struct(linenumber, line);
-		opfunc = get_op_func(global_struct->arg_list[0]);
-		if (opfunc == NULL)
+		global_struct = create_global_struct(line_number, line);
+		op_func = select_op_func(global_struct->arg_list[0]);
+		if (op_func == NULL)
 		{
 			free_all(head, line, fptr);
 			free_global_struct(global_struct);
@@ -38,7 +41,7 @@ int main(int argc, char *argv[])
 			exit(1);
 		}
 
-		opfunc(&head, global_struct->linenum);
+		op_func(&head, global_struct->line_number);
 
 		free_global_struct(global_struct);
 

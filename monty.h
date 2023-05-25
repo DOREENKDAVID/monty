@@ -41,12 +41,7 @@ typedef struct instruction_s
  * @line: pointer to string
  * @arglist: double pointer to list of line parsed
  */
-typedef struct global_struct_s
-{
-	char *line;
-	unsigned int linenum;
-	char **arg_list;
-} global_struct_t;
+
 
 /* add_node.c and delete_node.c*/
 size_t list_len(const stack_t *h);

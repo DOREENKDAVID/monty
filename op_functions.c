@@ -14,9 +14,9 @@ void op_pint(stack_t **head, unsigned int line_number)
 	if (head == NULL)
 	{
 		line_number = line_number;
-		fprintf(stderr, "L%d: can't pint, stack empty",
-				global_struct->linenum);
-		exit(EXIT_FAILURE)
+		fprintf(stderr, "L%u: can't pint, stack empty",
+				line_number);
+		exit(EXIT_FAILURE);
 
 	}
 	printf("%d\n", temp->n);
@@ -37,8 +37,8 @@ void op_pop(stack_t **head, unsigned int line_number)
 	if (temp == NULL)
 	{
 		line_number = line_number;
-		fprintf(stderr, "L%d: can't pop an empty stack\n",
-				global_struct->linenum);
+		fprintf(stderr, "L%u: can't pop an empty stack\n",
+				line_number);
 		exit(EXIT_FAILURE);
 
 	}
@@ -61,8 +61,8 @@ void op_add(stack_t **head, unsigned int line_number)
 	{
 		line_number = line_number;
 		fprintf(stderr,
-			"L%d: can't add, stack too short\n",
-			global_struct->line_num);
+			"L%u: can't add, stack too short\n",
+			line_number);
 		exit(EXIT_FAILURE);
 	}
 	node_0 = get_node_at_index(*head, 0);
