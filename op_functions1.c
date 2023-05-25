@@ -62,3 +62,5 @@ void op_pall(stack_t **head, unsigned int line_number)
 		temp = temp->next;
 	}
 }
+
+
