@@ -40,9 +40,9 @@ void m_push(stack_t **head, unsigned int line_number)
 	}
 	num = atoi(arg);
 
-	if (global_s.flag == 0)
+	if (global.flag == 0)
 		new_node = add_node_beg(head, num);
-	else if (global_s.flag == 1)
+	else if (global.flag == 1)
 		new_node = add_node_end(head, num);
 
 	if (new_node == NULL)
@@ -112,7 +112,7 @@ void m_swap(stack_t **head, unsigned int line_number)
 	temp = get_node_at_index(*head, 0);
 	i = temp->n;
 	delete_node_at_index(head, 0);
-	new_node = insert_node_at_index(head, 1, i);
+	new_node = add_node_at_index(head, 1, i);
 	if (new_node == NULL)
 	{
 		fprintf(stderr, "Error: malloc failed%u",

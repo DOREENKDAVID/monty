@@ -15,7 +15,7 @@
  * returns the function pointer instructions[i].f
  *
  */
-int monty_opcode(stack_t **head, char *line_ptr, unsigned int line_number, FILE *fptr)
+int execute_opcode(char *line_ptr, stack_t **head, unsigned int line_number, FILE *fptr)
 {
 	instruction_t instructions[] = {
 		{"push", m_push},

@@ -1,6 +1,8 @@
 #ifndef MONTY_H
 #define MONTY_H
 
+#define _GNU_SOURCE
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -18,16 +20,15 @@
  * @line_ptr: line content
  * @flag: change stack <-> queue
  */
-typedef struct global_vars
+typedef struct global_s
 {
 	char *arg;
 	FILE *fptr;
 	char *line_ptr;
 	int flag;
-	unsigned int line_number;
 
-}  global_var;
-extern global_var global;
+} global_t;
+extern global_t global;
 
 
 /**
@@ -72,7 +73,7 @@ size_t list_len(const stack_t *h);
 stack_t *add_node_end(stack_t **head, const int n);
 stack_t *add_node_beg(stack_t **head, const int n);
 stack_t *get_node_at_index(stack_t *head, unsigned int index);
-stack_t *insert_node_at_index(stack_t **h, unsigned int idx, int n);
+stack_t *add_node_at_index(stack_t **head, unsigned int index, int n);
 void delete_node_at_index(stack_t **head, unsigned int index);
 
 /* op_functions */
@@ -83,10 +84,16 @@ void m_pop(stack_t **head, unsigned int line_number);
 void m_push(stack_t **head, unsigned int line_number);
 void m_pall(stack_t **head, unsigned int line_number);
 void m_swap(stack_t **head, unsigned int line_number);
+void m_div(stack_t **head, unsigned int line_number);
+void m_mul(stack_t **head, unsigned int line_number);
+void m_sub(stack_t **head, unsigned int line_number);
+void m_mod(stack_t **head, unsigned int line_number);
+void m_pstr(stack_t **head, unsigned int line_number);
+void m_pchar(stack_t **head, unsigned int line_number);
 void free_stack(stack_t *head);
 
 /*main function*/
-void execute_opcode(stack_t **head,char * line_ptr,  unsigned int line_number, FILE *fptr);
+int execute_opcode(char *line_ptr, stack_t **head, unsigned int line_number, FILE *fptr);
 /*is_digit.c */
 int is_digit(char c);
 /*read_line.c*/

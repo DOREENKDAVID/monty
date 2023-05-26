@@ -71,36 +71,36 @@ stack_t *add_node_end(stack_t **head, const int n)
 * Return: new node at postion on success, NULL on failure
 */
 
-stack_t *add_node_at_index(stack_t **h, unsigned int idx, int n)
+stack_t *add_node_at_index(stack_t **head, unsigned int index, int n)
 {
 	unsigned int i;
 	stack_t *temp = NULL;
 	stack_t *new_node = malloc(sizeof(stack_t));
 
-	if (!new_node || !h)
+	if (!new_node || !head)
 		return (NULL);
 
 	new_node->n = n;
-	if (*h == NULL)
+	if (*head == NULL)
 	{
 		new_node->next = NULL;
 		new_node->prev = NULL;
-		*h = new_node;
+		*head = new_node;
 		return (new_node);
 	}
 
-	temp = *h;
+	temp = *head;
 
-	if (idx == 0)
-		return (add_node_beg(h, n));
+	if (index == 0)
+		return (add_node_beg(head, n));
 
-	for (i = 0; temp->next && i <= idx; i++)
+	for (i = 0; temp->next && i <= index; i++)
 	{
 		temp = temp->next;
 
 		if (temp == NULL)
 			return (NULL);
-		if (i == idx - 1)
+		if (i == index - 1)
 		{
 			new_node->next = temp->next;
 			new_node->prev = temp->prev;
@@ -110,7 +110,7 @@ stack_t *add_node_at_index(stack_t **h, unsigned int idx, int n)
 		}
 	}
 	if (temp->next == NULL)
-		return (add_node_end(h, n));
+		return (add_node_end(head, n));
 	return (NULL);
 }
 

@@ -1,6 +1,6 @@
 #include "monty.h"
 
-global_vars global = {NULL, NULL, NULL, 0};
+global_t global = {NULL, NULL, NULL, 0};
 
 /**
  * main - main function for Monty interpreter
@@ -23,12 +23,13 @@ global_vars global = {NULL, NULL, NULL, 0};
  */
 int main(int argc, char *argv[])
 {
+	char *line_ptr;
+	FILE *fptr;
 	size_t size = 0;
 	ssize_t input = 1;
 	stack_t *head = NULL;
-	FILE *fptr;
-	char *line_ptr;
 	unsigned int line_number = 0;
+
 	if (argc != 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");
@@ -51,7 +52,7 @@ int main(int argc, char *argv[])
 
 		if (input > 0)
 		{
-		execute_opcode(line_ptr &head, line_number, fptr);
+		execute_opcode(line_ptr, &head, line_number, fptr);
 		}
 		free(line_ptr);
 	}
