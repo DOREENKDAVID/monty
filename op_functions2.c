@@ -41,7 +41,7 @@ void m_sub(stack_t **head, unsigned int line_number)
 	{
 		fprintf(stderr, "Error: malloc failed%u",
 				line_number);
-		free_stack();
+		free_stack(*head);
 		exit(EXIT_FAILURE);
 	}
 }
@@ -70,7 +70,7 @@ void m_div(stack_t **head, unsigned int line_number)
 	{
 		fprintf(stderr, "L%u: can't div, stack too short\n",
 				line_number);
-		free_stack();
+		free_stack(*head);
 		exit(EXIT_FAILURE);
 
 	}
@@ -78,7 +78,7 @@ void m_div(stack_t **head, unsigned int line_number)
 	{
 		fprintf(stderr, "L%u: division by zero\n",
 				line_number);
-		free_stack();
+		free_stack(*head);
 		exit(EXIT_FAILURE);
 	}
 	node_0 = get_node_at_index(*head, 0);
@@ -93,7 +93,7 @@ void m_div(stack_t **head, unsigned int line_number)
 	{
 		fprintf(stderr, "Error: malloc failed%u",
 				line_number);
-		free_stack();
+		free_stack(*head);
 		exit(EXIT_FAILURE);
 	}
 }

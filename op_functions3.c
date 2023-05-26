@@ -22,8 +22,8 @@ void m_mul(stack_t **head, unsigned int line_number)
 	if (list_len(*head) < 2)
 	{
 		fprintf(stderr, "L%u: can't mul, stack too short\n",
-				line_number););
-		free_stack();
+				line_number);
+		free_stack(*head);
 		exit(EXIT_FAILURE);
 	}
 	node_0 = get_node_at_index(*head, 0);
@@ -38,7 +38,7 @@ void m_mul(stack_t **head, unsigned int line_number)
 	{
 		fprintf(stderr, "Error: malloc failed%u",
 				line_number);;
-		free_stack();
+		free_stack(*head);
 		exit(EXIT_FAILURE);
 	}
 }
@@ -59,14 +59,14 @@ void m_mul(stack_t **head, unsigned int line_number)
 
 void m_mod(stack_t **head, unsigned int line_number)
 {
-	stack_t *new = NULL, *node_0 = NULL, *node_1 = NULL;
+	stack_t *new_node = NULL, *node_0 = NULL, *node_1 = NULL;
 	int remainder = 0;
 
 	if (list_len(*head) < 2)
 	{
 		fprintf(stderr, "L%u: can't mod, stack too short\n",
 				line_number);
-		free_stack();
+		free_stack(*head);
 		exit(EXIT_FAILURE);
 	}
 	node_0 = get_node_at_index(*head, 0);
@@ -75,7 +75,7 @@ void m_mod(stack_t **head, unsigned int line_number)
 	{
 		fprintf(stderr, "L%u: can't sub, stack too short\n",
 				line_number);
-		free_stack();
+		free_stack(*head);
 		exit(EXIT_FAILURE);
 	}
 
@@ -88,7 +88,7 @@ void m_mod(stack_t **head, unsigned int line_number)
 	{
 		fprintf(stderr, "Error: malloc failed%u",
 				line_number);
-		free_stack();
+		free_stack(*head);
 		exit(EXIT_FAILURE);
 	}
 }

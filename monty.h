@@ -22,9 +22,8 @@ typedef struct global_s
 {
 	char *arg;
 	FILE *fptr;
-	char *lne_ptr;
+	char *line_ptr;
 	int flag;
-	stack_t *head;
 	unsigned int num;
 
 }  global_t;
@@ -84,7 +83,7 @@ void m_pop(stack_t **head, unsigned int line_number);
 void m_push(stack_t **head, unsigned int line_number);
 void m_pall(stack_t **head, unsigned int line_number);
 void m_swap(stack_t **head, unsigned int line_number);
-void free_stack(void);
+void free_stack(stack_t *head);
 
 /*main function*/
 void monty_opcode(stack_t **head,char * choice,  unsigned int line_number);

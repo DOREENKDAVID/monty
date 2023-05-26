@@ -17,7 +17,7 @@
 void m_push(stack_t **head, unsigned int line_number)
 {
 	int num = 0, input = 0;
-	char *new_node = NULL;
+	stack_t *new_node = NULL;
 	char *arg = strtok(NULL, "\n\t\r ");
 
 	if (arg && arg[0] == '-')
@@ -35,7 +35,7 @@ void m_push(stack_t **head, unsigned int line_number)
 	{
 		fprintf(stderr, "L%u: usage: push integer\n",
 				line_number);
-		free_stack();
+		free_stack(*head);
 		exit(EXIT_FAILURE);
 	}
 	num = atoi(arg);
@@ -47,9 +47,9 @@ void m_push(stack_t **head, unsigned int line_number)
 
 	if (new_node == NULL)
 	{
-		fprintf((stderr, "Error: malloc failed%u",
+		fprintf(stderr, "Error: malloc failed%u",
 				line_number);
-		free_stack();
+		free_stack(*head);
 		exit(EXIT_FAILURE);
 	}
 }
@@ -99,7 +99,7 @@ void m_pall(stack_t **head, unsigned int line_number)
 
 void m_swap(stack_t **head, unsigned int line_number)
 {
-	stack_t *new = NULL, *temp = *head;
+	stack_t *new_node = NULL, *temp = *head;
 	int i = 0;
 
 	if (list_len(*head) < 2)
@@ -112,12 +112,12 @@ void m_swap(stack_t **head, unsigned int line_number)
 	temp = get_node_at_index(*head, 0);
 	i = temp->n;
 	delete_node_at_index(head, 0);
-	new = insert_node_at_index(head, 1, i);
-	if (new == NULL)
+	new_node = insert_node_at_index(head, 1, i);
+	if (new_node == NULL)
 	{
 		fprintf(stderr, "Error: malloc failed%u",
 				line_number);
-		free_stack();
+		free_stack(*head);
 		exit(EXIT_FAILURE);
 	}
 }

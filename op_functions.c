@@ -45,7 +45,7 @@ void m_pop(stack_t **head, unsigned int line_number)
 		line_number = line_number;
 		fprintf(stderr, "L%u: can't pop an empty stack\n",
 				line_number);
-		free_stack();
+		free_stack(*head);
 		exit(EXIT_FAILURE);
 
 	}
@@ -68,7 +68,7 @@ void m_pop(stack_t **head, unsigned int line_number)
 
 void m_add(stack_t **head, unsigned int line_number)
 {
-	stack_t *new = NULL, *node_0 = NULL, *node_1 = NULL;
+	stack_t *new_node = NULL, *node_0 = NULL, *node_1 = NULL;
 	int sum = 0;
 
 	if (list_len(*head) < 2)
@@ -86,12 +86,12 @@ void m_add(stack_t **head, unsigned int line_number)
 	delete_node_at_index(head, 0);
 	delete_node_at_index(head, 0);
 
-	new =  add_node_beg(head, sum);
-	if (new == NULL)
+	new_node =  add_node_beg(head, sum);
+	if (new_node == NULL)
 	{
 		fprintf(stderr, "Error: malloc failed%u",
 				line_number);
-		free(new);
+		free_stack(*head);
 		exit(EXIT_FAILURE);		
 
 	}
@@ -106,6 +106,6 @@ void m_add(stack_t **head, unsigned int line_number)
 
 void m_nop(stack_t **head, unsigned int line_number)
 {
-	(void) = head;
-	(void) = line_number;
+	(void)head;
+	(void)line_number;
 }
