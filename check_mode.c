@@ -29,6 +29,12 @@ int execute_opcode(char *line_ptr, stack_t **head, unsigned int line_number, FIL
 		{"mul", m_mul},
 		{"div", m_div},
 		{"mod", m_mod},
+		{"pchar", m_pchar},
+		{"pstr", m_pstr},
+		{"rotl", m_rotl},
+		{"rotr", m_rotr},
+		{"queue", m_queue},
+		{"stack", m_stack},
 		{NULL, NULL}
 	};
 

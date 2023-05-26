@@ -88,8 +88,16 @@ void m_div(stack_t **head, unsigned int line_number);
 void m_mul(stack_t **head, unsigned int line_number);
 void m_sub(stack_t **head, unsigned int line_number);
 void m_mod(stack_t **head, unsigned int line_number);
+/*op_functions4.c*/
 void m_pstr(stack_t **head, unsigned int line_number);
 void m_pchar(stack_t **head, unsigned int line_number);
+/*op_functions5.c*/
+void m_rotl(stack_t **head, unsigned int line_number);
+void m_rotr(stack_t **head, unsigned int line_number);
+/*op_function6.c*/
+void m_stack(stack_t **head, unsigned int line_number);
+void m_queue(stack_t **head, unsigned int line_number);
+/* free.c*/
 void free_stack(stack_t *head);
 
 /*main function*/
