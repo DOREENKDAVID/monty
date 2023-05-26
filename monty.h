@@ -87,9 +87,9 @@ void m_swap(stack_t **head, unsigned int line_number);
 void free_stack(void);
 
 /*main function*/
-void tokenizer(stack_t **head,char * choice,  unsigned int line_number);
+void monty_opcode(stack_t **head,char * choice,  unsigned int line_number);
 /*is_digit.c */
 int is_digit(char c);
 /*read_line.c*/
-void read_line(char *n, stack_t **head);
+int main(int argc, char *argv[]);
 #endif
