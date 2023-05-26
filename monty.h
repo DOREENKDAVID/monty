@@ -77,14 +77,14 @@ stack_t *insert_node_at_index(stack_t **h, unsigned int idx, int n);
 void delete_node_at_index(stack_t **head, unsigned int index);
 
 /* op_functions */
-void op_add(stack_t **head, unsigned int line_number);
-void op_pint(stack_t **head, unsigned int line_number);
-void op_nop(stack_t **head, unsigned int line_number);
-void op_pop(stack_t **head, unsigned int line_number);
-void op_push(stack_t **head, unsigned int line_number);
-void op_pall(stack_t **head, unsigned int line_number);
-void op_swap(stack_t **head, unsigned int line_number);
-void free_all(stack_t *head);
+void m_add(stack_t **head, unsigned int line_number);
+void m_pint(stack_t **head, unsigned int line_number);
+void m_nop(stack_t **head, unsigned int line_number);
+void m_pop(stack_t **head, unsigned int line_number);
+void m_push(stack_t **head, unsigned int line_number);
+void m_pall(stack_t **head, unsigned int line_number);
+void m_swap(stack_t **head, unsigned int line_number);
+void free_stack(void);
 
 /*main function*/
 void tokenizer(stack_t **head,char * choice,  unsigned int line_number);

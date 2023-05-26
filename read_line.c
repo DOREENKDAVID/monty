@@ -1,35 +1,62 @@
 #include "monty.h"
 
+global_t global_s = {NULL, 0, NULL, NULL, NULL, 0};
+
 /**
- *read_line - read input
- *@n: args value
- *@head: pointer to first node
- *Return: void
+ * main - main function for Monty interpreter
+ * @argc: arguments count passed to the program
+ * @argv: array of argument strings
+ * Return: 0 on success and 1 on failure
+ * description
+ * check if the number of arguments passed is not equal to 2
+ * open the file specified by argv[1] for reading
+ * assign the file ptr to global_s.fptr
+ * read each line from the file using getline
+ * track the line number using global_s.num
+ * line read is passed to the strtok func to tokenizes 
+ * checks if the arg member of global_s is !NULL 
+ * and the 1st character of arg is not comment
+ * call monty_opfunc, passing the arg member of global_s
+ * as the opcode argument
+ *
+ *
  */
-void read_line(char *n, stack_t **head)
+int main(int argc, char *argv[])
 {
-	char *line_ptr = NULL, *user_cmd;
-	unsigned int line_number = 0;
-	size_t buf;
-	ssize_t read = 0;
+	size_t len = 0;
+	ssize_t input = 0;
+	void (*m_func)(stack_t **head, unsigned int linenumber) = NULL;
 
-	fptr = fopen(n, "r");
-
-	if (fptr == NULL)
+	if (argc != 2)
 	{
-		fprintf(stderr, "Error: Can't open file %s\n", n);
+		fprintf(STDERR_FILENO, USAGE);
 		exit(EXIT_FAILURE);
 	}
-	while ((read = getline(&line_ptr, &buf, fptr)) != -1)
+	global_s.fptr = fopen(argv[1], "r");
+	if (global_s.fptr == NULL)
 	{
-		line_number++;
-		user_cmd = strtok(line_ptr, "\n\t\r ");
-		if (user_cmd != NULL && user_cmd[0] != '#')
-		{
-			tokenizer(head, user_cmd, line_number);
-		}
+		fprintf(STDERR_FILENO, FILE_ERROR, argv[1]);
+		exit(EXIT_FAILURE);
 	}
-	free(line_ptr);
-	fclose(fptr);
+
+	while ((input = getline(&global_s.line_ptr,
+			       &len, global_s.fptr)) != -1)
+	{
+		global_s.num++;
+		strtok(global_s.line_ptr);
+		if (global_s.arg != NULL || *global_s.arg != '#')
+			continue;
+		m_func = monty_opfunc(global_s.arg);
+		if (m_func == NULL)
+		{
+			fprintf(
+				global_s.num,
+				global_s.arg);
+			free_stack();
+			exit(EXIT_FAILURE);
+		}
+		m_func(&global_s.head, global_s.num);
+	}
+	free_stack();
 	exit(EXIT_SUCCESS);
 }

@@ -1,22 +1,33 @@
 #include "monty.h"
 
 /**
- * tokenizer - splits line
+ * monty_opcode - to retrieve the  func ptr based on the opcode
  * @head: double pointer to first node
  * @choice: user input command to execute
  * @line_number:handls instructions based on their line numbers.
  * Return: void
+ * Description:
+ * Array of instruction_t structs defining opcode-function pairs
+ * End of the array
+ * loop through the array until a match for the specified opcode 
+ * compares the opcode to opcode member of current instruction_t str
+ * returns the function pointer instructions[i].f
+ *
  */
-void tokenizer(stack_t **head, char *choice, unsigned int line_number)
+void monty_opcode(stack_t **head, char *choice, unsigned int line_number)
 {
 	instruction_t instructions[] = {
-		{"push", op_push},
-		{"pall", op_pall},
-		{"pint", op_pint},
-		{"pop", op_pop},
-		{"swap", op_swap},
-		{"add", op_add},
-		{"nop", op_nop},
+		{"push", m_push},
+		{"pall", m_pall},
+		{"pint", m_pint},
+		{"pop", m_pop},
+		{"swap", m_swap},
+		{"add", m_add},
+		{"nop", m_nop},
+		{"sub", m_sub},
+		{"mul", m_mul},
+		{"div", m_div},
+		{"mod", m_mod},
 		{NULL, NULL}
 	};
 
@@ -30,15 +41,6 @@ void tokenizer(stack_t **head, char *choice, unsigned int line_number)
 		i++;
 	}
 
-	instructions[i].f(head, line_number);
-	return;
-
-	fprintf(stderr, "L%u: unknown instruction %s\n",
-			line_number, choice);
-	if (*head != NULL)
-	{
-	free(head);
-	}
-	exit(EXIT_FAILURE);
+	return (instructions[i].f);
 
 }
