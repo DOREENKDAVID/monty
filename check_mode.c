@@ -1,10 +1,11 @@
 #include "monty.h"
 
 /**
- * monty_opcode - to retrieve the  func ptr based on the opcode
+ * execute_opcode - to retrieve the  func ptr based on the opcode
  * @head: double pointer to first node
- * @choice: user input command to execute
+ * @line_ptr: user input command to execute
  * @line_number:handls instructions based on their line numbers.
+ * @fptr:pointer to monty file
  * Return: void
  * Description:
  * Array of instruction_t structs defining opcode-function pairs
@@ -14,7 +15,7 @@
  * returns the function pointer instructions[i].f
  *
  */
-void monty_opcode(stack_t **head, char *choice, unsigned int line_number)
+int monty_opcode(stack_t **head, char *line_ptr, unsigned int line_number, FILE *fptr)
 {
 	instruction_t instructions[] = {
 		{"push", m_push},
@@ -31,16 +32,31 @@ void monty_opcode(stack_t **head, char *choice, unsigned int line_number)
 		{NULL, NULL}
 	};
 
-	int i = 0;
+	unsigned int i = 0;
 
+	char *op_code;
 
-	while (instructions[i].opcode)
+	op_code = strtok(line_ptr, " \n\t");
+	if(op_code && op_code[0] == '#')
+		return (0);
+	global.arg = strtok(NULL, " \n\t");
+	while (instructions[i].opcode && op_code)
 	{
-		if (strcmp(choice, instructions[i].opcode) == 0)
-			break;
+		if (strcmp(op_code, instructions[i].opcode) == 0)
+		{
+			instructions[i].f(head,line_number);
+			return (0);
+		}
 		i++;
 	}
-
-	return (instructions[i].f);
+	if (op_code && instructions[i].opcode == NULL)
+	{
+	       	fprintf(stderr, "L%d: unknown instruction %s\n",
+				line_number, op_code);
+		fclose(fptr);
+		free(line_ptr);
+		free_stack(*head);
+		exit(EXIT_FAILURE); }
+	return (1);
 
 }

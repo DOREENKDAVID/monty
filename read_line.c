@@ -1,6 +1,6 @@
 #include "monty.h"
 
-global_t global_s = {NULL, 0, NULL, NULL, NULL, 0};
+global_vars global = {NULL, NULL, NULL, 0};
 
 /**
  * main - main function for Monty interpreter
@@ -23,40 +23,39 @@ global_t global_s = {NULL, 0, NULL, NULL, NULL, 0};
  */
 int main(int argc, char *argv[])
 {
-	size_t len = 0;
-	ssize_t input = 0;
-	void (*m_func)(stack_t **head, unsigned int linenumber) = NULL;
-
+	size_t size = 0;
+	ssize_t input = 1;
+	stack_t *head = NULL;
+	FILE *fptr;
+	char *line_ptr;
+	unsigned int line_number = 0;
 	if (argc != 2)
 	{
-		fprintf(STDERR_FILENO, USAGE);
+		fprintf(stderr, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
-	global_s.fptr = fopen(argv[1], "r");
-	if (global_s.fptr == NULL)
+	fptr = fopen(argv[1], "r");
+	global.fptr = fptr;
+	if (fptr == NULL)
 	{
-		fprintf(STDERR_FILENO, FILE_ERROR, argv[1]);
+		fprintf(stderr,"Error: Can't open file%s\n", argv[1]);
 		exit(EXIT_FAILURE);
 	}
 
-	while ((input = getline(&global_s.line_ptr,
-			       &len, global_s.fptr)) != -1)
+	while (input > 0)
 	{
-		global_s.num++;
-		strtok(global_s.line_ptr);
-		if (global_s.arg != NULL || *global_s.arg != '#')
-			continue;
-		m_func = monty_opfunc(global_s.arg);
-		if (m_func == NULL)
+		line_ptr = NULL;
+		input = getline(&line_ptr, &size, fptr);
+		global.line_ptr = line_ptr;
+		line_number++;
+
+		if (input > 0)
 		{
-			fprintf(
-				global_s.num,
-				global_s.arg);
-			free_stack();
-			exit(EXIT_FAILURE);
+		execute_opcode(line_ptr &head, line_number, fptr);
 		}
-		m_func(&global_s.head, global_s.num);
+		free(line_ptr);
 	}
-	free_stack();
-	exit(EXIT_SUCCESS);
+	free_stack(head);
+	fclose(fptr);
+	return (0);
 }

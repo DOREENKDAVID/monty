@@ -18,16 +18,16 @@
  * @line_ptr: line content
  * @flag: change stack <-> queue
  */
-typedef struct global_s
+typedef struct global_vars
 {
 	char *arg;
 	FILE *fptr;
 	char *line_ptr;
 	int flag;
-	unsigned int num;
+	unsigned int line_number;
 
-}  global_t;
-extern global_t global_s;
+}  global_var;
+extern global_var global;
 
 
 /**
@@ -86,7 +86,7 @@ void m_swap(stack_t **head, unsigned int line_number);
 void free_stack(stack_t *head);
 
 /*main function*/
-void monty_opcode(stack_t **head,char * choice,  unsigned int line_number);
+void execute_opcode(stack_t **head,char * line_ptr,  unsigned int line_number, FILE *fptr);
 /*is_digit.c */
 int is_digit(char c);
 /*read_line.c*/
