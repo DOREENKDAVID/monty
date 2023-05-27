@@ -8,7 +8,7 @@
 *
 * Return: void
 * Description
-* Set the "flag" variable in the global_vars to 0,
+* Set the flag variable in the global_vars to zero,
 * to  indicate that the linked list should act as a stack.
 */
 void m_stack(stack_t **head, unsigned int line_number)

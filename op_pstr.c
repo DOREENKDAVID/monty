@@ -20,7 +20,7 @@ void m_pstr(stack_t **head, unsigned int line_number)
 	(void)line_number;
 	while (new_node != NULL)
 	{
-		if (new_node->n <= 0 && new_node->n > 127)
+		if (new_node->n > 0 && new_node->n <= 127)
 		{
 			printf("%c", new_node->n);
 			new_node = new_node->next;

@@ -29,8 +29,8 @@ void m_pchar(stack_t **head, unsigned int line_number)
 	}
 	if (new_node->n >= 0 && new_node->n <= 127)
 	{
-		printf("%c", new_node->n);
-		printf("\n");
+		putchar(new_node->n);
+		putchar('\n');
 	}
 	else
 	{
