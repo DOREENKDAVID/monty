@@ -13,7 +13,7 @@ stack_t *add_node_beg(stack_t **head, const int n)
 {
 	stack_t *new_node = malloc(sizeof(stack_t));
 
-	if (!new_node || !head)
+	if (new_node == NULL || head == NULL)
 		return (NULL);
 
 	new_node->n = n;
@@ -40,7 +40,7 @@ stack_t *add_node_end(stack_t **head, const int n)
 	stack_t *temp;
 	stack_t *new_node = malloc(sizeof(stack_t));
 
-	if (!head || !new_node)
+	if (head== NULL || new_node == NULL)
 		return (NULL);
 
 	temp = *head;
@@ -48,7 +48,7 @@ stack_t *add_node_end(stack_t **head, const int n)
 	new_node->n = n;
 	new_node->next = NULL;
 
-	if (!*head)
+	if (*head == NULL)
 	{
 		new_node->prev = NULL;
 		*head = new_node;
@@ -77,18 +77,6 @@ stack_t *add_node_at_index(stack_t **head, unsigned int index, int n)
 	stack_t *temp = NULL;
 	stack_t *new_node = malloc(sizeof(stack_t));
 
-	if (!new_node || !head)
-		return (NULL);
-
-	new_node->n = n;
-	if (*head == NULL)
-	{
-		new_node->next = NULL;
-		new_node->prev = NULL;
-		*head = new_node;
-		return (new_node);
-	}
-
 	temp = *head;
 
 	if (index == 0)
@@ -96,21 +84,24 @@ stack_t *add_node_at_index(stack_t **head, unsigned int index, int n)
 
 	for (i = 0; temp->next && i <= index; i++)
 	{
-		temp = temp->next;
-
-		if (temp == NULL)
-			return (NULL);
 		if (i == index - 1)
 		{
+			if (temp->next == NULL)
+				return (add_node_end(head, n));
+			if (new_node == NULL)
+				return (NULL);
+			new_node ->n = n;
+			new_node->next = NULL;
 			new_node->next = temp->next;
-			new_node->prev = temp->prev;
+			new_node->prev = temp;
 			temp->prev->next = new_node;
-			temp->next->prev = new_node;
+			temp->next = new_node;
 			return (new_node);
 		}
+		else
+			temp = temp->next;
 	}
-	if (temp->next == NULL)
-		return (add_node_end(head, n));
+
 	return (NULL);
 }
 

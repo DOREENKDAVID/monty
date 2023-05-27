@@ -13,7 +13,7 @@ void delete_node_at_index(stack_t **head, unsigned int index)
 	stack_t *curr = NULL;
 	stack_t *temp = NULL;
 
-	if (!*head || !head)
+	if (*head == NULL || head == NULL)
 		return;
 
 	temp = *head;
