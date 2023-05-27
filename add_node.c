@@ -40,7 +40,7 @@ stack_t *add_node_end(stack_t **head, const int n)
 	stack_t *temp;
 	stack_t *new_node = malloc(sizeof(stack_t));
 
-	if (head== NULL || new_node == NULL)
+	if (head == NULL || new_node == NULL)
 		return (NULL);
 
 	temp = *head;
@@ -64,8 +64,8 @@ stack_t *add_node_end(stack_t **head, const int n)
 
 /**
 * add_node_at_index -adds a new node in list at position index
-* @h: double pointer to nodes in the list
-* @idx: index to insert node at
+* @head: double pointer to nodes in the list
+* @index: index to insert node at
 * @n: data to  new node
 *
 * Return: new node at postion on success, NULL on failure
@@ -90,7 +90,7 @@ stack_t *add_node_at_index(stack_t **head, unsigned int index, int n)
 				return (add_node_end(head, n));
 			if (new_node == NULL)
 				return (NULL);
-			new_node ->n = n;
+			new_node->n = n;
 			new_node->next = NULL;
 			new_node->next = temp->next;
 			new_node->prev = temp;

@@ -22,6 +22,8 @@ void m_pchar(stack_t **head, unsigned int line_number)
 	{
 		fprintf(stderr, "L%d: can't pchar, stack empty\n",
 				line_number);
+		fclose(global.fptr);
+		free(global.line_ptr);
 		free_stack(*head);
 		exit(EXIT_FAILURE);
 	}
@@ -34,6 +36,8 @@ void m_pchar(stack_t **head, unsigned int line_number)
 	{
 	fprintf(stderr, "L%d: can't pchar, value out of range\n",
 			line_number);
+	fclose(global.fptr);
+	free(global.line_ptr);
 	free_stack(*head);
 	exit(EXIT_FAILURE);
 	}

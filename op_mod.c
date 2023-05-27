@@ -23,6 +23,8 @@ void m_mod(stack_t **head, unsigned int line_number)
 	{
 		fprintf(stderr, "L%u: can't mod, stack too short\n",
 				line_number);
+		fclose(global.fptr);
+		free(global.line_ptr);
 		free_stack(*head);
 		exit(EXIT_FAILURE);
 	}
@@ -32,6 +34,8 @@ void m_mod(stack_t **head, unsigned int line_number)
 	{
 		fprintf(stderr, "L%u: can't sub, stack too short\n",
 				line_number);
+		fclose(global.fptr);
+		free(global.line_ptr);
 		free_stack(*head);
 		exit(EXIT_FAILURE);
 	}
@@ -45,7 +49,7 @@ void m_mod(stack_t **head, unsigned int line_number)
 	{
 		fprintf(stderr, "Error: malloc failed%u",
 				line_number);
-		free_stack(*head);
+		free(new_node);
 		exit(EXIT_FAILURE);
 	}
 }

@@ -15,14 +15,17 @@ void m_pop(stack_t **head, unsigned int line_number)
 {
 	stack_t **temp = head;
 
-	if (temp == NULL)
+	if (*temp == NULL)
 	{
 		line_number = line_number;
 		fprintf(stderr, "L%u: can't pop an empty stack\n",
 				line_number);
+		fclose(global.fptr);
+		free(global.line_ptr);
 		free_stack(*head);
 		exit(EXIT_FAILURE);
 
 	}
 	delete_node_at_index(temp, 0);
+
 }

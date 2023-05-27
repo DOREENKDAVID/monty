@@ -17,6 +17,4 @@ void free_stack(stack_t *head)
 		free(head);
 		head = temp;
 	}
-	fclose(global.fptr);
-	free(global.line_ptr);
 }

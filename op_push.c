@@ -33,6 +33,8 @@ void m_push(stack_t **head, unsigned int line_number)
 	{
 		fprintf(stderr, "L%u: usage: push integer\n",
 				line_number);
+		fclose(global.fptr);
+		free(global.line_ptr);
 		free_stack(*head);
 		exit(EXIT_FAILURE);
 	}
@@ -43,18 +45,13 @@ void m_push(stack_t **head, unsigned int line_number)
 	if (global.flag == 0)
 		new_node = add_node_beg(head, num);
 	else
-	{	if (global.flag == 1)
-		{
-			 new_node = add_node_end(head, num);
-		}
-	}
+		new_node = add_node_end(head, num);
 
 	if (new_node == NULL)
 	{
 		fprintf(stderr, "Error: malloc failed%u",
 				line_number);
-		free_stack(*head);
+		free(new_node);
 		exit(EXIT_FAILURE);
-	
 	}
 }

@@ -25,6 +25,9 @@ void m_add(stack_t **head, unsigned int line_number)
 		fprintf(stderr,
 			"L%u: can't add, stack too short\n",
 			line_number);
+		fclose(global.fptr);
+		free(global.line_ptr);
+		free_stack(*head);
 		exit(EXIT_FAILURE);
 	}
 	node_0 = get_node_at_index(*head, 0);
