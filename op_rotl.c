@@ -21,8 +21,10 @@ void m_rotl(stack_t **head, unsigned int line_number)
 	int data = 0;
 
 	(void)line_number;
-	if (*head == NULL)
+	if (*head == NULL && (*head)->next == NULL)
+	{
 		return;
+	}
 	temp = get_node_at_index(*head, 0);
 	data = temp->n;
 	delete_node_at_index(head, 0);

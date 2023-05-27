@@ -16,16 +16,12 @@ void m_pint(stack_t **head, unsigned int line_number)
 
 	if (*head == NULL)
 	{
-		line_number = line_number;
 		fprintf(stderr, "L%u: can't pint, stack empty",
 				line_number);
 		fclose(global.fptr);
 		free(global.line_ptr);
 		free_stack(*head);
-
 		exit(EXIT_FAILURE);
-
 	}
 	printf("%d\n", temp->n);
 }
-

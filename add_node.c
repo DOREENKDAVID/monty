@@ -75,7 +75,7 @@ stack_t *add_node_at_index(stack_t **head, unsigned int index, int n)
 {
 	unsigned int i;
 	stack_t *temp = NULL;
-	stack_t *new_node = malloc(sizeof(stack_t));
+	stack_t *new_node = NULL;
 
 	temp = *head;
 
@@ -88,6 +88,7 @@ stack_t *add_node_at_index(stack_t **head, unsigned int index, int n)
 		{
 			if (temp->next == NULL)
 				return (add_node_end(head, n));
+			new_node = malloc(sizeof(stack_t));
 			if (new_node == NULL)
 				return (NULL);
 			new_node->n = n;

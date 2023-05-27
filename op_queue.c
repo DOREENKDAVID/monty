@@ -7,7 +7,7 @@
 *
 * Return: void
 * Description
-* Set the "flag" variable in the global_vars to 1,
+* Set the flag variable in the global_vars to one,
 * to indicate that the linked list should act as a queue.
 */
 void m_queue(stack_t **head, unsigned int line_number)

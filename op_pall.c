@@ -16,12 +16,14 @@ void m_pall(stack_t **head, unsigned int line_number)
 {
 	int i;
 	stack_t *temp = *head;
-
 	(void)line_number;
 
-	for (i = 0; temp != NULL; i++)
-	{
-		printf("%d\n", temp->n);
-		temp = temp->next;
-	}
+	if (*head == NULL)
+		return;
+	else
+		for (i = 0; temp != NULL; i++)
+		{
+			printf("%d\n", temp->n);
+			temp = temp->next;
+		}
 }

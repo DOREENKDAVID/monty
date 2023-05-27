@@ -21,7 +21,6 @@ void m_add(stack_t **head, unsigned int line_number)
 
 	if (list_len(*head) < 2)
 	{
-		line_number = line_number;
 		fprintf(stderr,
 			"L%u: can't add, stack too short\n",
 			line_number);
@@ -42,7 +41,7 @@ void m_add(stack_t **head, unsigned int line_number)
 	{
 		fprintf(stderr, "Error: malloc failed%u",
 				line_number);
-		free_stack(*head);
+		free(new_node);
 		exit(EXIT_FAILURE);
 
 	}

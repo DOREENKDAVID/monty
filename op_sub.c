@@ -34,7 +34,7 @@ void m_sub(stack_t **head, unsigned int line_number)
 	node_0 = get_node_at_index(*head, 0);
 	node_1 = get_node_at_index(*head, 1);
 
-	sub = node_0->n - node_1->n;
+	sub = node_1->n - node_0->n;
 	delete_node_at_index(head, 0);
 	delete_node_at_index(head, 0);
 

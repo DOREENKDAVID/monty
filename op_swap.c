@@ -18,7 +18,7 @@
 
 void m_swap(stack_t **head, unsigned int line_number)
 {
-	stack_t *new_node = NULL, *temp = *head;
+	stack_t *temp = *head, *new_node = NULL;
 	int i = 0;
 
 	if (list_len(*head) < 2)
