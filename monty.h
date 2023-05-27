@@ -88,20 +88,23 @@ void m_div(stack_t **head, unsigned int line_number);
 void m_mul(stack_t **head, unsigned int line_number);
 void m_sub(stack_t **head, unsigned int line_number);
 void m_mod(stack_t **head, unsigned int line_number);
-/*op_functions4.c*/
+/*op_pstr.c*/
 void m_pstr(stack_t **head, unsigned int line_number);
+/*op_pchar.c*/
 void m_pchar(stack_t **head, unsigned int line_number);
-/*op_functions5.c*/
+/*op_rotl.c*/
 void m_rotl(stack_t **head, unsigned int line_number);
+/*op_rotr.c*/
 void m_rotr(stack_t **head, unsigned int line_number);
-/*op_function6.c*/
+/*op_stack.c*/
 void m_stack(stack_t **head, unsigned int line_number);
+/*op_queue.c*/
 void m_queue(stack_t **head, unsigned int line_number);
 /* free.c*/
 void free_stack(stack_t *head);
 
-/*main function*/
-int execute_opcode(char *line_ptr, stack_t **head, unsigned int line_number, FILE *fptr);
+/*check_mode*/
+int parse(char *line_ptr, stack_t **head, unsigned int line_number, FILE *fptr);
 /*is_digit.c */
 int is_digit(char c);
 /*read_line.c*/

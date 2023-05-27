@@ -13,8 +13,8 @@ global_t global = {NULL, NULL, NULL, 0};
  * assign the file ptr to global_s.fptr
  * read each line from the file using getline
  * track the line number using global_s.num
- * line read is passed to the strtok func to tokenizes 
- * checks if the arg member of global_s is !NULL 
+ * line read is passed to the strtok func to tokenizes
+ * checks if the arg member of global_s is !NULL
  * and the 1st character of arg is not comment
  * call monty_opfunc, passing the arg member of global_s
  * as the opcode argument
@@ -39,7 +39,7 @@ int main(int argc, char *argv[])
 	global.fptr = fptr;
 	if (fptr == NULL)
 	{
-		fprintf(stderr,"Error: Can't open file%s\n", argv[1]);
+		fprintf(stderr, "Error: Can't open file%s\n", argv[1]);
 		exit(EXIT_FAILURE);
 	}
 
@@ -52,7 +52,7 @@ int main(int argc, char *argv[])
 
 		if (input > 0)
 		{
-		execute_opcode(line_ptr, &head, line_number, fptr);
+		parse(line_ptr, &head, line_number, fptr);
 		}
 		free(line_ptr);
 	}
