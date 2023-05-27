@@ -16,34 +16,37 @@
 
 void m_push(stack_t **head, unsigned int line_number)
 {
-	int num = 0, input = 0;
+	int num, input = 0, flag = 0;
 	stack_t *new_node = NULL;
-	char *arg = strtok(NULL, "\n\t\r ");
 
-	if (arg && arg[0] == '-')
-		input++;
-	while (arg && arg[input])
+	if (global.arg)
 	{
-		if (!is_digit(arg[input]))
+		
+		if (global.arg[0] == '-')
+			input++;
+
+		for (; global.arg[input] != '\0'; input++)
 		{
-			input = -1;
-			break;
+			if (!is_digit(global.arg[input]))
+			{
+				flag = -1;
+			}
 		}
-		input++;
+		
 	}
-	if (arg == NULL || input  == -1)
+	if (flag  == -1)
 	{
 		fprintf(stderr, "L%u: usage: push integer\n",
 				line_number);
 		free_stack(*head);
 		exit(EXIT_FAILURE);
 	}
-	num = atoi(arg);
+	num = atoi(global.arg);
 
 	if (global.flag == 0)
 		new_node = add_node_beg(head, num);
 	else if (global.flag == 1)
-		new_node = add_node_end(head, num);
+		 new_node = add_node_end(head, num);
 
 	if (new_node == NULL)
 	{
@@ -72,7 +75,7 @@ void m_pall(stack_t **head, unsigned int line_number)
 	int i;
 	stack_t *temp = *head;
 
-	line_number = line_number;
+	(void)line_number;
 
 	for (i = 0; temp != NULL; i++)
 	{
@@ -107,6 +110,7 @@ void m_swap(stack_t **head, unsigned int line_number)
 		fprintf(stderr,
 			"L%d: can't swap, stack too short\n",
 			line_number);
+
 		exit(EXIT_FAILURE);
 	}
 	temp = get_node_at_index(*head, 0);

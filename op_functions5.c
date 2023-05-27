@@ -21,7 +21,7 @@ void m_rotl(stack_t **head, unsigned int line_number)
 	int data = 0;
 
 	(void)line_number;
-	if (!*head == NULL)
+	if (*head == NULL)
 		return;
 	temp = get_node_at_index(*head, 0);
 	data = temp->n;
@@ -48,7 +48,7 @@ void m_rotr(stack_t **head, unsigned int line_number)
 	stack_t *temp = *head;
 	int data = 0;
 
-	max = list_len(*head);
+	int max = list_len(*head);
 
 	(void)line_number;
 	if (*head == NULL)
