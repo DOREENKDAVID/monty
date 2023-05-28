@@ -23,7 +23,9 @@ void m_rotr(stack_t **head, unsigned int line_number)
 
 	(void)line_number;
 	if (*head == NULL && (*head)->next == NULL)
+	{
 		return;
+	}
 	temp = get_node_at_index(*head, max - 1);
 	data = temp->n;
 	delete_node_at_index(head, max - 1);
