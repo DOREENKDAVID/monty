@@ -22,12 +22,13 @@ void m_rotr(stack_t **head, unsigned int line_number)
 	int max = list_len(*head);
 
 	(void)line_number;
-	if (*head == NULL && (*head)->next == NULL)
+
+	if (*head == NULL || (*head)->next == NULL)
 	{
 		return;
 	}
 	temp = get_node_at_index(*head, max - 1);
 	data = temp->n;
 	delete_node_at_index(head, max - 1);
-	add_node_end(head, data);
+	add_node_beg(head, data);
 }
