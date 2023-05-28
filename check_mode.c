@@ -12,10 +12,8 @@ int parse(char *line_ptr, stack_t **head, unsigned int line_number, FILE *fptr)
 {
 	instruction_t instructions[] = {
 		{"push", m_push}, {"pall", m_pall}, {"pint", m_pint},
-		{"pop", m_pop},	{"swap", m_swap},
-		{"add", m_add},
-		{"nop", m_nop},
-		{"sub", m_sub},
+		{"pop", m_pop},	{"swap", m_swap}, {"add", m_add},
+		{"nop", m_nop},	{"sub", m_sub},
 		{"mul", m_mul},
 		{"div", m_div},
 		{"mod", m_mod},
@@ -39,10 +37,12 @@ int parse(char *line_ptr, stack_t **head, unsigned int line_number, FILE *fptr)
 		if (strcmp(op_code, instructions[i].opcode) == 0)
 		{
 			instructions[i].f(head, line_number);
-			return (0); }
-		i++; }
+			return (0);
+		}
+		i++;
+	}
 	if (op_code && instructions[i].opcode == NULL)
-	{ fprintf(stderr, "L%u:unknown instruction %s\n",
+	{ fprintf(stderr, "L%d: unknown instruction %s\n",
 				line_number, op_code);
 		fclose(fptr);
 		free(line_ptr);
