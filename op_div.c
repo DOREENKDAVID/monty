@@ -41,7 +41,7 @@ void m_div(stack_t **head, unsigned int line_number)
 		free_stack(*head);
 		exit(EXIT_FAILURE);
 	}
-	
+
 	quotient = node_1->n / node_0->n;
 	delete_node_at_index(head, 0);
 	delete_node_at_index(head, 0);

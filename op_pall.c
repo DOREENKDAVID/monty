@@ -20,10 +20,9 @@ void m_pall(stack_t **head, unsigned int line_number)
 
 	if (*head == NULL)
 		return;
-	else
-		for (i = 0; temp != NULL; i++)
-		{
-			printf("%d\n", temp->n);
-			temp = temp->next;
-		}
+	for (i = 0; temp != NULL; i++)
+	{
+		printf("%d\n", temp->n);
+		temp = temp->next;
+	}
 }

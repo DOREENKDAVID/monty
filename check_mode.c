@@ -13,7 +13,8 @@ int parse(char *line_ptr, stack_t **head, unsigned int line_number, FILE *fptr)
 	instruction_t instructions[] = {
 		{"push", m_push}, {"pall", m_pall}, {"pint", m_pint},
 		{"pop", m_pop},	{"swap", m_swap}, {"add", m_add},
-		{"nop", m_nop},	{"sub", m_sub},
+		{"nop", m_nop},
+		{"sub", m_sub},
 		{"mul", m_mul},
 		{"div", m_div},
 		{"mod", m_mod},
@@ -28,10 +29,10 @@ int parse(char *line_ptr, stack_t **head, unsigned int line_number, FILE *fptr)
 	unsigned int i = 0;
 	char *op_code;
 
-	op_code = strtok(line_ptr, " \n\t");
+	op_code = strtok(line_ptr, "\n\t\r ");
 	if (op_code && op_code[0] == '#')
 		return (0);
-	global.arg = strtok(NULL, " \n\t");
+	global.arg = strtok(NULL, "\n\t\r ");
 	while (instructions[i].opcode && op_code)
 	{
 		if (strcmp(op_code, instructions[i].opcode) == 0)

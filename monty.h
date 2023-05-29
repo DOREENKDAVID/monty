@@ -104,7 +104,8 @@ void m_queue(stack_t **head, unsigned int line_number);
 void free_stack(stack_t *head);
 
 /*check_mode*/
-int parse(char *line_ptr, stack_t **head, unsigned int line_number, FILE *fptr);
+int parse(char *line_ptr, stack_t **head, unsigned int line_number,
+		FILE *fptr);
 /*is_digit.c */
 int is_digit(char c);
 /*read_line.c*/
