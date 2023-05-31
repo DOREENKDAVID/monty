@@ -34,14 +34,13 @@ void m_add(stack_t **head, unsigned int line_number)
 
 	sum = node_0->n + node_1->n;
 	delete_node_at_index(head, 0);
-	delete_node_at_index(head, 0);
 
-	new_node =  add_node_beg(head, sum);
-	if (new_node == NULL)
+	node_1->n = sum;
+	if (node_1 == NULL)
 	{
 		fprintf(stderr, "Error: malloc failed%u",
 				line_number);
-		free(new_node);
+		free(node_1);
 		exit(EXIT_FAILURE);
 
 	}
