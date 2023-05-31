@@ -16,7 +16,7 @@
 
 void m_add(stack_t **head, unsigned int line_number)
 {
-	stack_t *new_node = NULL, *node_0 = NULL, *node_1 = NULL;
+	stack_t *node_0 = *head, *node_1 = NULL;
 	int sum = 0;
 
 	if (list_len(*head) < 2)
@@ -33,9 +33,8 @@ void m_add(stack_t **head, unsigned int line_number)
 	node_1 = get_node_at_index(*head, 1);
 
 	sum = node_0->n + node_1->n;
-	node_1->n = sum;
-
 	delete_node_at_index(head, 0);
+	node_1->n = sum;
 
 }
 
