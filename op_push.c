@@ -17,7 +17,6 @@
 void m_push(stack_t **head, unsigned int line_number)
 {
 	int num, input = 0, flag = 0;
-	stack_t *new_node = NULL;
 
 	if (global.arg)
 	{
@@ -43,15 +42,8 @@ void m_push(stack_t **head, unsigned int line_number)
 	num = atoi(global.arg);
 
 	if (global.flag == 0)
-		new_node = add_node_beg(head, num);
+		add_node_beg(head, num);
 	else
-		new_node = add_node_end(head, num);
+		add_node_end(head, num);
 
-	if (new_node == NULL)
-	{
-		fprintf(stderr, "Error: malloc failed%u",
-				line_number);
-		free(new_node);
-		exit(EXIT_FAILURE);
-	}
 }

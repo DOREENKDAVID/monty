@@ -40,8 +40,7 @@ int parse(char *line_ptr, stack_t **head, unsigned int line_number, FILE *fptr)
 			instructions[i].f(head, line_number);
 			return (0);
 		}
-		i++;
-	}
+		i++; }
 	if (op_code && instructions[i].opcode == NULL)
 	{ fprintf(stderr, "L%d: unknown instruction %s\n",
 				line_number, op_code);
