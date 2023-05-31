@@ -27,9 +27,9 @@ void m_push(stack_t **head, unsigned int line_number)
 		{
 			if (!is_digit(global.arg[input]))
 			{
-				flag = -1;
+				flag = 1;
 			}
-	if (flag  == -1)
+	if (flag  == 1)
 	{
 		fprintf(stderr, "L%u: usage: push integer\n",
 				line_number);
